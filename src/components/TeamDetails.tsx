@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Team, Member } from '../models/Team';
 import { useTeams } from '../context/TeamContext';
-import TeamForm from '../components/TeamForm';
-import MemberForm from '../components/MemberForm';
+import TeamForm from './TeamForm';
+import MemberForm from './MemberForm';
 import styles from './TeamDetails.module.css';
 
 interface TeamDetailsProps {
@@ -14,6 +14,36 @@ const TeamDetails: React.FC<TeamDetailsProps> = ({ team, onBack }) => {
   const { handleUpdateTeam, handleUpdateMember } = useTeams();
   const [editTeamOpen, setEditTeamOpen] = useState(false);
   const [editMember, setEditMember] = useState<Member | null>(null);
+  const [currentTeam, setCurrentTeam] = useState<Team>(team);
+
+  useEffect(() => {
+    setCurrentTeam(team);
+  }, [team]);
+
+  const handleTeamUpdate = async (updatedData: Partial<Team>) => {
+    try {
+      setCurrentTeam(prev => ({ ...prev, ...updatedData }));
+      
+      await handleUpdateTeam(team.id, updatedData);
+    } catch (error) {
+      setCurrentTeam(team);
+    }
+  };
+
+  const handleMemberUpdate = async (memberId: number, updatedData: Partial<Member>) => {
+    try {
+      setCurrentTeam(prev => ({
+        ...prev,
+        members: prev.members.map(member => 
+          member.id === memberId ? { ...member, ...updatedData } : member
+        )
+      }));
+
+      await handleUpdateMember(team.id, memberId, updatedData);
+    } catch (error) {
+      setCurrentTeam(team);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -22,7 +52,7 @@ const TeamDetails: React.FC<TeamDetailsProps> = ({ team, onBack }) => {
       </button>
 
       <div className={styles.header}>
-        <h1 className={styles.teamName}>{team.name}</h1>
+        <h1 className={styles.teamName}>{currentTeam.name}</h1>
         <button 
           className={styles.editButton}
           onClick={() => setEditTeamOpen(true)}
@@ -32,11 +62,11 @@ const TeamDetails: React.FC<TeamDetailsProps> = ({ team, onBack }) => {
       </div>
 
       <p className={styles.createdDate}>
-        Created: {new Date(team.createdAt).toLocaleDateString()}
+        Created: {new Date(currentTeam.createdAt).toLocaleDateString()}
       </p>
 
       <h2 className={styles.membersTitle}>
-        Members ({team.members.length})
+        Members ({currentTeam.members.length})
       </h2>
 
       <div className={styles.membersTable}>
@@ -46,7 +76,7 @@ const TeamDetails: React.FC<TeamDetailsProps> = ({ team, onBack }) => {
           <div className={styles.headerCell}>Email</div>
           <div className={styles.headerCell}>Actions</div>
         </div>
-        {team.members.map(member => (
+        {currentTeam.members.map(member => (
           <div key={member.id} className={styles.tableRow}>
             <div className={styles.tableCell}>{member.name}</div>
             <div className={styles.tableCell}>{member.role}</div>
@@ -68,9 +98,9 @@ const TeamDetails: React.FC<TeamDetailsProps> = ({ team, onBack }) => {
           <div className={styles.modalContent}>
             <h2>Edit Team</h2>
             <TeamForm
-              team={team}
-              onSubmit={(updatedData) => {
-                handleUpdateTeam(team.id, updatedData);
+              team={currentTeam}
+              onSubmit={async (updatedData) => {
+                await handleTeamUpdate(updatedData);
                 setEditTeamOpen(false);
               }}
               onCancel={() => setEditTeamOpen(false)}
@@ -85,8 +115,8 @@ const TeamDetails: React.FC<TeamDetailsProps> = ({ team, onBack }) => {
             <h2>Edit Member</h2>
             <MemberForm
               member={editMember}
-              onSubmit={(updatedData) => {
-                handleUpdateMember(team.id, editMember.id, updatedData);
+              onSubmit={async (updatedData) => {
+                await handleMemberUpdate(editMember.id, updatedData);
                 setEditMember(null);
               }}
               onCancel={() => setEditMember(null)}
