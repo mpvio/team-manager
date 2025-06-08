@@ -1,0 +1,65 @@
+.card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  cursor: pointer;
+  transition: box-shadow 0.3s, transform 0.2s;
+  background-color: white;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.teamIcon {
+  font-size: 24px;
+  margin-right: 12px;
+}
+
+.teamName {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.cardBody {
+  margin-bottom: 16px;
+}
+
+.memberCount {
+  margin: 8px 0;
+  color: #666;
+}
+
+.createdDate {
+  margin: 8px 0;
+  color: #888;
+  font-size: 14px;
+}
+
+.viewButton {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.viewButton:hover {
+  background-color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin: 8px 0;
+  }
+}

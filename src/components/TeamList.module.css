@@ -1,0 +1,38 @@
+.container {
+  padding: 20px;
+}
+
+.filterInput {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.loading {
+  padding: 20px;
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}
+
+.error {
+  padding: 20px;
+  text-align: center;
+  font-size: 18px;
+  color: #d32f2f;
+}
+
+@media (max-width: 768px) {
+  .teamGrid {
+    grid-template-columns: 1fr;
+  }
+}
