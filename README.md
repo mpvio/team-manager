@@ -1,46 +1,30 @@
-# Getting Started with Create React App
+# Team Management Front-end
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Written with React and Typescript, styling included in .module.css files.
+Default page lists each team as a card element.
+Clicking on a card pulls up that team's information and team members.
+The team's name and members' info can be modified.
+Because I am faking an API call, changes are added to a "mockTeams" database (a list of Team objects).
 
-## Available Scripts
+## Installation:
 
-In the project directory, you can run:
+Clone the repository from the link provided.
+Open the repository in the command line and run:
 
-### `npm start`
+npm install
+npm start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## What I would do with more time
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Add functionality to the Teams/ Members options in the sidebar:
+-- Members would show a table of members with their assigned teams in an additional column.
 
-### `npm test`
+- Add proper data storage
+-- e.g. store data in a local .db file to read from.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Add remaining CRUD functionality
 
-### `npm run build`
+- UI improvements
+-- possibly drag-and-drop members between teams?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Unit & Integration Testing
