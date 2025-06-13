@@ -1,6 +1,6 @@
 # Team Management Front-end
 
-Written with React and Typescript, styling included in .module.css files.
+Written with React and Typescript, styling included in the /styles folder as .module.css files.
 Default page lists each team as a card element.
 Clicking on a card pulls up that team's information and team members.
 The team's name and members' info can be modified.

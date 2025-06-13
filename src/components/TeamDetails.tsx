@@ -3,7 +3,7 @@ import { Team, Member } from '../models/Team';
 import { useTeams } from '../context/TeamContext';
 import TeamForm from './TeamForm';
 import MemberForm from './MemberForm';
-import styles from './TeamDetails.module.css';
+import styles from '../styles/TeamDetails.module.css';
 
 interface TeamDetailsProps {
   team: Team;

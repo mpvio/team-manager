@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Member } from '../models/Team';
-import styles from './MemberForm.module.css';
+import styles from '../styles/MemberForm.module.css';
 
 interface MemberFormProps {
   member: Member;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Team } from '../models/Team';
-import styles from './TeamForm.module.css';
+import styles from '../styles/TeamForm.module.css';
 
 interface TeamFormProps {
   team: Team;

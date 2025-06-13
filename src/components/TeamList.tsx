@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTeams } from '../context/TeamContext';
 import TeamCard from '../components/TeamCard';
-import styles from './TeamList.module.css';
+import styles from '../styles/TeamList.module.css';
 import { Team } from '../models/Team';
 
 const TeamList: React.FC<{ onSelectTeam: (team: Team) => void }> = ({ onSelectTeam }) => {
